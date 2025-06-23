@@ -1,5 +1,48 @@
 ---
 title: "Quarto 1"
 format: html
+execute: 
+  echo: false
 ---
 
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+library(palmerpenguins)
+```
+
+```{r}
+penguins |>
+  drop_na() |>
+  ggplot(aes(
+    x = flipper_length_mm,
+    y = body_mass_g,
+    color = species,
+    shape = island
+  )) +
+  geom_point(alpha = 0.7, size = 3) + # Add points with some transparency and size
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    aes(color = species),
+    linetype = "dashed"
+  ) + # Add linear regression line without confidence interval, colored by species
+  scale_color_viridis_d(option = "plasma") + # Use a color-blind friendly viridis palette
+  labs(
+    title = "Penguin Flipper Length vs. Body Mass",
+    subtitle = "Relationship across different species and islands",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    color = "Species",
+    shape = "Island"
+  ) +
+  theme_minimal(base_size = 14) + # Use a clean, minimal theme with a larger base font size
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 18), # Center and bold title
+    plot.subtitle = element_text(hjust = 0.5, size = 12, color = "gray50"), # Center and lighten subtitle
+    axis.title = element_text(face = "bold"), # Bold axis titles
+    legend.position = "right", # Position legend on the right
+    panel.grid.minor = element_blank(), # Remove minor grid lines
+    panel.background = element_rect(fill = "white", colour = NA), # Set white background
+    plot.background = element_rect(fill = "white", colour = NA) # Set white plot background
+  )
+```
