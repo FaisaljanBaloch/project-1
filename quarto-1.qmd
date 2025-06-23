@@ -1,5 +1,6 @@
 ---
 title: "Quarto 1"
+author: "Faisal Jan"
 format: html
 execute: 
   echo: false
@@ -7,7 +8,7 @@ execute:
 
 ```{r}
 suppressPackageStartupMessages(library(tidyverse))
-library(palmerpenguins)
+suppressPackageStartupMessages(library(palmerpenguins))
 ```
 
 ```{r}
