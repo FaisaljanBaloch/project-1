@@ -25,7 +25,8 @@ penguins |>
     method = "lm",
     se = FALSE,
     aes(color = species),
-    linetype = "dashed"
+    linetype = "dashed",
+    formula = 'y ~ x'
   ) + # Add linear regression line without confidence interval, colored by species
   scale_color_viridis_d(option = "plasma") + # Use a color-blind friendly viridis palette
   labs(
